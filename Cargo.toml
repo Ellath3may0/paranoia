@@ -1,0 +1,26 @@
+[package]
+name = "paranoia"
+description = "Linux hardening, audit and cleanup tool"
+license = "MIT"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+libc = "0.2"
+md-5 = "0.10"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true
+
+[package.metadata.deb]
+name = "paranoia"
+maintainer = "paranoia <root@localhost>"
+section = "admin"
+priority = "optional"
+depends = ""
+extended-description = "Linux hardening, audit and cleanup tool (Rust port of megascript.sh)."
+assets = [["target/release/paranoia", "usr/sbin/paranoia", "755"]]
+maintainer-scripts = "packaging/"
